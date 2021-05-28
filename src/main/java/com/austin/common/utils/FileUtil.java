@@ -191,8 +191,7 @@ public class FileUtil {
      */
     public static boolean deleteDirectory(File dir) {
         if ((dir == null) || !dir.isDirectory()) {
-            throw new IllegalArgumentException("Argument " + dir +
-                    " is not a directory. ");
+            throw new IllegalArgumentException("Argument " + dir + " is not a directory. ");
         }
 
         File[] entries = dir.listFiles();
@@ -253,8 +252,7 @@ public class FileUtil {
      * @return 目录内容的文件数组。
      * @since 1.0
      */
-    public static File[] listAll(File file,
-                                 FileFilter filter) {
+    public static File[] listAll(File file, FileFilter filter) {
         ArrayList list = new ArrayList();
         File[] files;
         if (!file.exists() || file.isFile()) {
@@ -273,8 +271,7 @@ public class FileUtil {
      * @param filter 过滤器
      * @param file   目录
      */
-    private static void list(ArrayList list, File file,
-                             FileFilter filter) {
+    private static void list(ArrayList list, File file, FileFilter filter) {
         if (filter.accept(file)) {
             list.add(file);
             if (file.isFile()) {
@@ -713,8 +710,7 @@ public class FileUtil {
             File[] files = lfile.listFiles(mfilter);
             for (int i = 0; i < files.length; i++) {
                 filename = files[i].getName();
-                if ((filename.indexOf(id + "_") == 0) && (filename.indexOf("_small") > -1))
-                    counts++;
+                if ((filename.indexOf(id + "_") == 0) && (filename.indexOf("_small") > -1)) counts++;
             }
             files = null;
         }

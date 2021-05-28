@@ -34,19 +34,7 @@ public class Md5 {
     private static final int S43 = 15;
     private static final int S44 = 21;
 
-    private static byte padding[] = {
-            (byte) 0x80, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0,
-            (byte) 0, (byte) 0, (byte) 0, (byte) 0
-    };
+    private static byte padding[] = {(byte) 0x80, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0, (byte) 0};
 
 
     private InputStream in = null;
@@ -120,6 +108,60 @@ public class Md5 {
         return sb.toString();
     }
 
+    public static String md5Encode(String inStr) {
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            e.printStackTrace();
+            return "";
+        }
+        char[] charArray = inStr.toCharArray();
+        byte[] byteArray = new byte[charArray.length];
+
+        for (int i = 0; i < charArray.length; i++)
+            byteArray[i] = (byte) charArray[i];
+        byte[] md5Bytes = md5.digest(byteArray);
+        StringBuffer hexValue = new StringBuffer();
+        for (int i = 0; i < md5Bytes.length; i++) {
+            int val = ((int) md5Bytes[i]) & 0xff;
+            if (val < 16) hexValue.append("0");
+            hexValue.append(Integer.toHexString(val));
+        }
+        return hexValue.toString();
+    }
+
+    /**
+     * 获取一个文件的md5值(可处理大文件)
+     *
+     * @return md5 value
+     */
+    public static String md5File(File file) {
+        FileInputStream fileInputStream = null;
+        try {
+            MessageDigest MD5 = MessageDigest.getInstance("MD5");
+            fileInputStream = new FileInputStream(file);
+            byte[] buffer = new byte[8192];
+            int length;
+            while ((length = fileInputStream.read(buffer)) != -1) {
+                MD5.update(buffer, 0, length);
+            }
+            return new String(Hex.encodeHex(MD5.digest()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private final int F(int x, int y, int z) {
         return ((x & y) | ((~x) & z));
     }
@@ -172,10 +214,7 @@ public class Md5 {
         int i = 0;
         int j = 0;
         for (; j < len; i++, j += 4) {
-            output[i] = (((int) (input[off + j] & 0xff))
-                    | (((int) (input[off + j + 1] & 0xff)) << 8)
-                    | (((int) (input[off + j + 2] & 0xff)) << 16)
-                    | (((int) (input[off + j + 3] & 0xff)) << 24));
+            output[i] = (((int) (input[off + j] & 0xff)) | (((int) (input[off + j + 1] & 0xff)) << 8) | (((int) (input[off + j + 2] & 0xff)) << 16) | (((int) (input[off + j + 3] & 0xff)) << 24));
         }
     }
 
@@ -316,15 +355,12 @@ public class Md5 {
      *                     input stream.
      */
 
-    public byte[] getDigest()
-            throws IOException {
+    public byte[] getDigest() throws IOException {
         byte buffer[] = new byte[BUFFER_SIZE];
         int got = -1;
 
-        if (digest != null)
-            return digest;
-        while ((got = in.read(buffer)) > 0)
-            update(buffer, got);
+        if (digest != null) return digest;
+        while ((got = in.read(buffer)) > 0) update(buffer, got);
         this.digest = end();
         return digest;
     }
@@ -336,17 +372,12 @@ public class Md5 {
      */
 
     public byte[] processString() {
-        if (!stringp)
-            throw new RuntimeException(this.getClass().getName()
-                    + "[processString]"
-                    + " not a string.");
+        if (!stringp) throw new RuntimeException(this.getClass().getName() + "[processString]" + " not a string.");
         try {
             return getDigest();
         } catch (IOException ex) {
         }
-        throw new RuntimeException(this.getClass().getName()
-                + "[processString]"
-                + ": implementation error.");
+        throw new RuntimeException(this.getClass().getName() + "[processString]" + ": implementation error.");
     }
 
     /**
@@ -355,14 +386,11 @@ public class Md5 {
 
     public String getStringDigest() {
         if (digest == null)
-            throw new RuntimeException(this.getClass().getName()
-                    + "[getStringDigest]"
-                    + ": called before processing.");
+            throw new RuntimeException(this.getClass().getName() + "[getStringDigest]" + ": called before processing.");
         return stringify(digest);
     }
 
-    public void hmac_Md5(String text, String key)
-            throws IOException {
+    public void hmac_Md5(String text, String key) throws IOException {
         //byte disgest[] = new byte[16] ;
         //byte output[] = new byte[32] ;
         //output[33] = ( byte ) '\0' ;
@@ -404,60 +432,6 @@ public class Md5 {
         md51.update(k_opad, 64);
         md51.update(digest, 16);
         digest = md51.getDigest();
-    }
-
-    public static String md5Encode(String inStr) {
-        MessageDigest md5 = null;
-        try {
-            md5 = MessageDigest.getInstance("MD5");
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-            return "";
-        }
-        char[] charArray = inStr.toCharArray();
-        byte[] byteArray = new byte[charArray.length];
-
-        for (int i = 0; i < charArray.length; i++)
-            byteArray[i] = (byte) charArray[i];
-        byte[] md5Bytes = md5.digest(byteArray);
-        StringBuffer hexValue = new StringBuffer();
-        for (int i = 0; i < md5Bytes.length; i++) {
-            int val = ((int) md5Bytes[i]) & 0xff;
-            if (val < 16)
-                hexValue.append("0");
-            hexValue.append(Integer.toHexString(val));
-        }
-        return hexValue.toString();
-    }
-
-    /**
-     * 获取一个文件的md5值(可处理大文件)
-     * @return md5 value
-     */
-    public static String md5File(File file) {
-        FileInputStream fileInputStream = null;
-        try {
-            MessageDigest MD5 = MessageDigest.getInstance("MD5");
-            fileInputStream = new FileInputStream(file);
-            byte[] buffer = new byte[8192];
-            int length;
-            while ((length = fileInputStream.read(buffer)) != -1) {
-                MD5.update(buffer, 0, length);
-            }
-            return new String(Hex.encodeHex(MD5.digest()));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            try {
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 

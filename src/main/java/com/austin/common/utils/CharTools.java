@@ -143,13 +143,11 @@ public class CharTools {
      */
     private static final boolean Utf8codeCheck(String text) {
         String sign = "";
-        if (text.startsWith("%e"))
-            for (int i = 0, p = 0; p != -1; i++) {
-                p = text.indexOf("%", p);
-                if (p != -1)
-                    p++;
-                sign += p;
-            }
+        if (text.startsWith("%e")) for (int i = 0, p = 0; p != -1; i++) {
+            p = text.indexOf("%", p);
+            if (p != -1) p++;
+            sign += p;
+        }
         return sign.equals("147-1");
     }
 

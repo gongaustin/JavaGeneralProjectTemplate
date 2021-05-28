@@ -19,7 +19,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * @Description:使用切面对注解日志进行处理
@@ -79,14 +78,14 @@ public class LogAspect {
         //请求的参数
         Object[] args = joinPoint.getArgs();
         //接口处理时间
-        ProceedingJoinPoint timeJoinPoint = (ProceedingJoinPoint)joinPoint;
+        ProceedingJoinPoint timeJoinPoint = (ProceedingJoinPoint) joinPoint;
         try {
             //开始时间
             long startTime = System.currentTimeMillis();
             timeJoinPoint.proceed(args);
             //结束时间
             long endTime = System.currentTimeMillis();
-            sysLog.setSpendTime((int)(endTime-startTime));
+            sysLog.setSpendTime((int) (endTime - startTime));
         } catch (Throwable throwable) {
             System.out.println(throwable.getMessage());
         }
@@ -94,7 +93,7 @@ public class LogAspect {
         String params = JSON.toJSONString(args);
         sysLog.setParameter(params);
         //获取操作开始时间
-        sysLog.setStartTime(new Date());
+        sysLog.setStartTime(System.currentTimeMillis());
 
 
         //获取用户ip地址

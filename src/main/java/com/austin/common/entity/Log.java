@@ -1,26 +1,20 @@
 package com.austin.common.entity;
 
-
-import com.austin.common.core.constant.TimeConstant;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * <p>
  * 操作日志表
  * </p>
  *
- * @author GongJun
- * @since 2019-08-28
+ * @author AustinGJ
+ * @since 2021-03-18
  */
-@TableName("sys_log")
+@TableName("upms_log")
 public class Log implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,56 +22,63 @@ public class Log implements Serializable {
     /**
      * 编号
      */
-    @TableId(value = "id", type = IdType.UUID)
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
+
     /**
      * 操作描述
      */
     private String description;
+
     /**
      * 操作用户
      */
     private String username;
+
     /**
      * 操作时间
      */
-    @JsonFormat(timezone = TimeConstant.TIME_ZONE, pattern = TimeConstant.DATETIME_FORMAT)
-    @DateTimeFormat(pattern = TimeConstant.DATETIME_FORMAT)
-    @TableField("start_time")
-    private Date startTime;
+    private Long startTime;
+
     /**
      * 消耗时间
      */
-    @TableField("spend_time")
     private Integer spendTime;
+
     /**
      * 根路径
      */
-    @TableField("base_path")
     private String basePath;
+
     /**
      * URI
      */
     private String uri;
+
     /**
      * URL
      */
     private String url;
+
     /**
      * 请求类型
      */
     private String method;
+
     private String parameter;
+
     /**
      * 用户标识
      */
-    @TableField("user_agent")
     private String userAgent;
+
     /**
      * IP地址
      */
     private String ip;
+
     private String result;
+
     /**
      * 权限值
      */
@@ -108,11 +109,11 @@ public class Log implements Serializable {
         this.username = username;
     }
 
-    public Date getStartTime() {
+    public Long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Long startTime) {
         this.startTime = startTime;
     }
 
@@ -198,21 +199,6 @@ public class Log implements Serializable {
 
     @Override
     public String toString() {
-        return "Log{" +
-        ", id=" + id +
-        ", description=" + description +
-        ", username=" + username +
-        ", startTime=" + startTime +
-        ", spendTime=" + spendTime +
-        ", basePath=" + basePath +
-        ", uri=" + uri +
-        ", url=" + url +
-        ", method=" + method +
-        ", parameter=" + parameter +
-        ", userAgent=" + userAgent +
-        ", ip=" + ip +
-        ", result=" + result +
-        ", permissions=" + permissions +
-        "}";
+        return "Log{" + "id=" + id + ", description=" + description + ", username=" + username + ", startTime=" + startTime + ", spendTime=" + spendTime + ", basePath=" + basePath + ", uri=" + uri + ", url=" + url + ", method=" + method + ", parameter=" + parameter + ", userAgent=" + userAgent + ", ip=" + ip + ", result=" + result + ", permissions=" + permissions + "}";
     }
 }

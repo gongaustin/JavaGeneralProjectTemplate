@@ -75,24 +75,10 @@ public class FileHelper {
         if (to.exists()) {
             if (overwrite) {
                 if (!to.delete()) {
-                    throw new IOException(
-                            MessageFormat.format(
-                                    labels.getString("deleteerror"),
-                                    (Object[]) new String[]{
-                                            to.toString()
-                                    }
-                            )
-                    );
+                    throw new IOException(MessageFormat.format(labels.getString("deleteerror"), (Object[]) new String[]{to.toString()}));
                 }
             } else {
-                throw new IOException(
-                        MessageFormat.format(
-                                labels.getString("alreadyexistserror"),
-                                (Object[]) new String[]{
-                                        to.toString()
-                                }
-                        )
-                );
+                throw new IOException(MessageFormat.format(labels.getString("alreadyexistserror"), (Object[]) new String[]{to.toString()}));
             }
         }
 
@@ -110,15 +96,7 @@ public class FileHelper {
             out.close();
             out = null;
             if (!from.delete()) {
-                throw new IOException(
-                        MessageFormat.format(
-                                labels.getString("deleteoriginalerror"),
-                                (Object[]) new String[]{
-                                        from.toString(),
-                                        to.toString()
-                                }
-                        )
-                );
+                throw new IOException(MessageFormat.format(labels.getString("deleteoriginalerror"), (Object[]) new String[]{from.toString(), to.toString()}));
             }
         } finally {
             if (in != null) {

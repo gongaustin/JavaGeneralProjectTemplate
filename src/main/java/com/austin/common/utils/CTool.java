@@ -35,10 +35,8 @@ public class CTool {
      * @return 替换后的字符串
      * <pre>
      */
-    public static final String replace(String strSrc, String strOld,
-                                       String strNew) {
-        if (strSrc == null || strOld == null || strNew == null)
-            return "";
+    public static final String replace(String strSrc, String strOld, String strNew) {
+        if (strSrc == null || strOld == null || strNew == null) return "";
 
         int i = 0;
 
@@ -80,8 +78,7 @@ public class CTool {
      */
 
     public static String htmlEncode(String strSrc) {
-        if (strSrc == null)
-            return "";
+        if (strSrc == null) return "";
 
         char[] arr_cSrc = strSrc.toCharArray();
         StringBuffer buf = new StringBuffer(arr_cSrc.length);
@@ -90,18 +87,12 @@ public class CTool {
         for (int i = 0; i < arr_cSrc.length; i++) {
             ch = arr_cSrc[i];
 
-            if (ch == '<')
-                buf.append("&lt;");
-            else if (ch == '>')
-                buf.append("&gt;");
-            else if (ch == '"')
-                buf.append("&quot;");
-            else if (ch == '\'')
-                buf.append("&#039;");
-            else if (ch == '&')
-                buf.append("&amp;");
-            else
-                buf.append(ch);
+            if (ch == '<') buf.append("&lt;");
+            else if (ch == '>') buf.append("&gt;");
+            else if (ch == '"') buf.append("&quot;");
+            else if (ch == '\'') buf.append("&#039;");
+            else if (ch == '&') buf.append("&amp;");
+            else buf.append(ch);
         }
 
         return buf.toString();
@@ -118,8 +109,7 @@ public class CTool {
      */
     public static String htmlEncode(String strSrc, int quotes) {
 
-        if (strSrc == null)
-            return "";
+        if (strSrc == null) return "";
         if (quotes == 0) {
             return htmlEncode(strSrc);
         }
@@ -130,18 +120,12 @@ public class CTool {
 
         for (int i = 0; i < arr_cSrc.length; i++) {
             ch = arr_cSrc[i];
-            if (ch == '<')
-                buf.append("&lt;");
-            else if (ch == '>')
-                buf.append("&gt;");
-            else if (ch == '"' && quotes == 1)
-                buf.append("&quot;");
-            else if (ch == '\'' && quotes == 2)
-                buf.append("&#039;");
-            else if (ch == '&')
-                buf.append("&amp;");
-            else
-                buf.append(ch);
+            if (ch == '<') buf.append("&lt;");
+            else if (ch == '>') buf.append("&gt;");
+            else if (ch == '"' && quotes == 1) buf.append("&quot;");
+            else if (ch == '\'' && quotes == 2) buf.append("&#039;");
+            else if (ch == '&') buf.append("&amp;");
+            else buf.append(ch);
         }
 
         return buf.toString();
@@ -155,8 +139,7 @@ public class CTool {
      * @since 1.0
      */
     public static String htmlDecode(String strSrc) {
-        if (strSrc == null)
-            return "";
+        if (strSrc == null) return "";
         strSrc = strSrc.replaceAll("&lt;", "<");
         strSrc = strSrc.replaceAll("&gt;", ">");
         strSrc = strSrc.replaceAll("&quot;", "\"");
@@ -298,12 +281,9 @@ public class CTool {
      * @return 转换后的字符串
      */
     public static String str4Table(String str) {
-        if (str == null)
-            return "&nbsp;";
-        else if (str.equals(""))
-            return "&nbsp;";
-        else
-            return str;
+        if (str == null) return "&nbsp;";
+        else if (str.equals("")) return "&nbsp;";
+        else return str;
     }
 
     /**
@@ -411,10 +391,8 @@ public class CTool {
      * @return 如果str为null值，返回空串"",否则返回str
      */
     public static String null2Blank(String str) {
-        if (str == null)
-            return "";
-        else
-            return str;
+        if (str == null) return "";
+        else return str;
     }
 
     /**
@@ -425,10 +403,8 @@ public class CTool {
      */
 
     public static String null2Blank(Date d) {
-        if (d == null)
-            return "";
-        else
-            return d.toString();
+        if (d == null) return "";
+        else return d.toString();
     }
 
     /**
@@ -440,10 +416,8 @@ public class CTool {
     public static int null2Zero(String str) {
         int intTmp;
         intTmp = str2Int(str);
-        if (intTmp == -1)
-            return 0;
-        else
-            return intTmp;
+        if (intTmp == -1) return 0;
+        else return intTmp;
     }
 
     /**
@@ -454,10 +428,8 @@ public class CTool {
      */
     public static String null2SZero(String str) {
         str = CTool.null2Blank(str);
-        if (str.equals(""))
-            return "0";
-        else
-            return str;
+        if (str.equals("")) return "0";
+        else return str;
     }
 
     /**
@@ -481,10 +453,7 @@ public class CTool {
      * @return md5加密后的字符串
      */
     public final static String MD5(String s) {
-        char hexDigits[] = {
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'a', 'b', 'c', 'd',
-                'e', 'f'};
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
         try {
             byte[] strTemp = s.getBytes();
             MessageDigest mdTemp = MessageDigest.getInstance("MD5");

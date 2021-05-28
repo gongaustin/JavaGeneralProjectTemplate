@@ -87,8 +87,7 @@ public class DateUtil {
      * @throws ParseException
      * @see SimpleDateFormat
      */
-    public static final Date convertStringToDate(String aMask, String strDate)
-            throws ParseException {
+    public static final Date convertStringToDate(String aMask, String strDate) throws ParseException {
         SimpleDateFormat df = null;
         Date date = null;
         df = new SimpleDateFormat(aMask);
@@ -102,8 +101,7 @@ public class DateUtil {
         return (date);
     }
 
-    public static final Date str2Date(String aMask, String strDate)
-            throws ParseException {
+    public static final Date str2Date(String aMask, String strDate) throws ParseException {
         SimpleDateFormat df = null;
         Date date = null;
         df = new SimpleDateFormat(aMask);
@@ -189,8 +187,7 @@ public class DateUtil {
      * @return a date object
      * @throws ParseException
      */
-    public static Date convertStringToDate(String strDate)
-            throws ParseException {
+    public static Date convertStringToDate(String strDate) throws ParseException {
         Date aDate = null;
 
         try {
@@ -288,8 +285,7 @@ public class DateUtil {
                     String nowYear = getNowDateTime("yyyy");
                     date_arr[2] = nowYear.substring(0, 2) + date_arr[2];
                 }
-                strReturn = DateUtil.getDateTime("yyyy-MM-dd",
-                        convertStringToDate(combineStringArray(date_arr, "/")));
+                strReturn = DateUtil.getDateTime("yyyy-MM-dd", convertStringToDate(combineStringArray(date_arr, "/")));
             }
 
         } catch (Exception e) {
@@ -353,8 +349,7 @@ public class DateUtil {
         String strReturn = "";
         try {
 
-            Date d = DateUtil.str2Date("yyyy-MM-dd HH:mm:ss", CTool.replace(
-                    strDate, "T", " "));
+            Date d = DateUtil.str2Date("yyyy-MM-dd HH:mm:ss", CTool.replace(strDate, "T", " "));
             strReturn = DateUtil.date2Str("hh:mm aaa", d);
 
         } catch (Exception e) {
@@ -373,10 +368,8 @@ public class DateUtil {
         String strReturn = "";
         try {
             String p = null;
-            if (strDate.length() > 10)
-                p = "yyyy-MM-dd HH:mm:ss";
-            else
-                p = "yyyy-MM-dd";
+            if (strDate.length() > 10) p = "yyyy-MM-dd HH:mm:ss";
+            else p = "yyyy-MM-dd";
             Date d = DateUtil.str2Date(p, CTool.replace(strDate, "T", " "));
             strReturn = DateUtil.date2Str("EEE d-MMM", d);
 
@@ -396,10 +389,8 @@ public class DateUtil {
         String strReturn = "";
         try {
             String p = null;
-            if (strDate.length() > 10)
-                p = "yyyy-MM-dd HH:mm:ss";
-            else
-                p = "yyyy-MM-dd";
+            if (strDate.length() > 10) p = "yyyy-MM-dd HH:mm:ss";
+            else p = "yyyy-MM-dd";
             Date d = DateUtil.str2Date(p, CTool.replace(strDate, "T", " "));
             strReturn = DateUtil.date2Str("EEE d-MMM hh:mm aaa", d);
 
@@ -451,8 +442,7 @@ public class DateUtil {
      * @return 字符串
      */
     public static final String getDateFromNow(int timeType, int timenum, String format_string) {
-        if ((format_string == null) || (format_string.equals("")))
-            format_string = "yyyy-MM-dd HH:mm:ss";
+        if ((format_string == null) || (format_string.equals(""))) format_string = "yyyy-MM-dd HH:mm:ss";
         Calendar cld = Calendar.getInstance();
         Date date = null;
         DateFormat df = new SimpleDateFormat(format_string);
@@ -468,8 +458,7 @@ public class DateUtil {
      * @return 字符串
      */
     public static final String getDateNow(String format_string) {
-        if ((format_string == null) || (format_string.equals("")))
-            format_string = "yyyy-MM-dd HH:mm:ss";
+        if ((format_string == null) || (format_string.equals(""))) format_string = "yyyy-MM-dd HH:mm:ss";
         Calendar cld = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat(format_string);
         return df.format(cld.getTime());

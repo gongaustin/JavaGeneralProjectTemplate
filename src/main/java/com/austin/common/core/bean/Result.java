@@ -10,37 +10,39 @@ public class Result<T> {
     private String msg;
     private T data;
 
-    private Result(T data){
-        this.code=200;
-        this.msg="success";
-        this.data=data;
+    private Result(T data) {
+        this.code = 200;
+        this.msg = "success";
+        this.data = data;
     }
 
     private Result(CodeMsg mg) {
-        if (mg==null){
+        if (mg == null) {
             return;
         }
-        this.code=mg.getCode();
-        this.msg=mg.getMsg();
+        this.code = mg.getCode();
+        this.msg = mg.getMsg();
     }
 
 
     /**
      * 成功时
+     *
      * @param <T>
      * @return
      */
-    public static <T>  Result<T>  success(T data){
+    public static <T> Result<T> success(T data) {
         return new Result<T>(data);
     }
 
     /**
      * 失败
+     *
      * @param <T>
      * @return
      */
-    public static <T>  Result<T>  fail(CodeMsg mg){
-        return  new Result<T>(mg);
+    public static <T> Result<T> message(CodeMsg mg) {
+        return new Result<T>(mg);
     }
 
     public int getCode() {

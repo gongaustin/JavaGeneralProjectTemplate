@@ -32,8 +32,7 @@ public class UploadHelper {
         SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
         String pathName = formater.format(new Date());
         File dir = new File(basePath + separator + pathName);
-        if (!dir.exists())
-            dir.mkdir();
+        if (!dir.exists()) dir.mkdir();
         return pathName;
     }
 
@@ -45,18 +44,14 @@ public class UploadHelper {
         int hour = date.get(Calendar.HOUR_OF_DAY);
         int minute = date.get(Calendar.MINUTE);
         int second = date.get(Calendar.SECOND);
-        if (oldFileName.length() > 30)
-            oldFileName = oldFileName.substring(oldFileName.length() - 30);
-        return (new Integer(hour * 3600 + minute * 60 + second).toString())
-                + split + oldFileName;
+        if (oldFileName.length() > 30) oldFileName = oldFileName.substring(oldFileName.length() - 30);
+        return (new Integer(hour * 3600 + minute * 60 + second).toString()) + split + oldFileName;
     }
 
     public static String getThumbFileName(String fileName) {
         int pos = fileName.lastIndexOf(".");
-        if (pos >= 0)
-            return fileName.substring(0, pos) + "s" + fileName.substring(pos);
-        else
-            return fileName + "s";
+        if (pos >= 0) return fileName.substring(0, pos) + "s" + fileName.substring(pos);
+        else return fileName + "s";
     }
 
     /**

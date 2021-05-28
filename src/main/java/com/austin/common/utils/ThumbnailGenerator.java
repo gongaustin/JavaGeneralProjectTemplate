@@ -29,10 +29,8 @@ public class ThumbnailGenerator {
         if (imageWidth < thumbWidth && imageHeight < thumbHeight) {
             thumbWidth = imageWidth;
             thumbHeight = imageHeight;
-        } else if (imageWidth < thumbWidth)
-            thumbWidth = imageWidth;
-        else if (imageHeight < thumbHeight)
-            thumbHeight = imageHeight;
+        } else if (imageWidth < thumbWidth) thumbWidth = imageWidth;
+        else if (imageHeight < thumbHeight) thumbHeight = imageHeight;
 
         BufferedImage thumbImage = new BufferedImage(thumbWidth, thumbHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = thumbImage.createGraphics();

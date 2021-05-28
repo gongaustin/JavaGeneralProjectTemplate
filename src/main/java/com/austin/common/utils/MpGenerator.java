@@ -2,8 +2,12 @@ package com.austin.common.utils;
 
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 
@@ -16,21 +20,25 @@ public class MpGenerator {
 
     private static final String package_name = "com.austin.common";  //包名
     private static final String driver_class_name = "com.mysql.cj.jdbc.Driver";   //数据库驱动
-    private static final String url = "jdbc:mysql://127.0.0.1:3306/common?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&&useSSL=true";
+    private static final String url = "jdbc:mysql://127.0.0.1:3306/yuechi_hospital?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&&useSSL=true";
     private static final String username = "root"; //用户名
     private static final String password = "123";  //密码
 
     public static void main(String args[]) {
+        //表前缀
+        String[] table_prefix = new String[]{"busi_", "upms_"};  //表前缀
+        //处理的表名
+        String[] table_names = new String[]{
+                "upms_user",
+                "upms_log",
+                "upms_dept",
+                "busi_article",
+                "busi_doctor",
+                "busi_attachment",
+                "busi_module"
+        };
 
-        String[] table_prefix = new String[]{"ce_", "upms_"};  //表前缀
-
-        String[] table_names = new String[]{"upms_user"};  //表名
-
-        new MpGenerator().generateCode(
-                package_name,
-                table_prefix,
-                table_names
-        );
+        new MpGenerator().generateCode(package_name, table_prefix, table_names);
     }
 
     public void generateCode(String packageName, String[] prefix, String... tableName) {
@@ -39,28 +47,45 @@ public class MpGenerator {
     }
 
     private void generateByTables(String packageName, String[] prefix, String... tableNames) {
-
+        //全局配置
         GlobalConfig config = new GlobalConfig();
         String dbUrl = url;
+        //数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig
+                //数据源类型
                 .setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
                 .setUsername(username)
                 .setPassword(password)
                 .setDriverName(driver_class_name);
+        //StrategyConfig
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig
                 .setCapitalMode(true)
-                .setEntityLombokModel(false)
+                .setEntityLombokModel(true)
                 .setTablePrefix(prefix)
                 .setNaming(NamingStrategy.underline_to_camel)  //转驼峰
                 .setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
+        //设置全局配置参数
         config
+                //通用查询映射
+                .setBaseResultMap(true)
+                //用用结果查询列
+                .setBaseColumnList(false)
+                //ID类型设置
+                .setIdType(IdType.ASSIGN_UUID)
+                //Swagger
+                .setSwagger2(true)
+
                 .setActiveRecord(false)
+                //缓存
                 .setEnableCache(false)
+                //作者
                 .setAuthor("AustinGJ")
+                //输出目录
                 .setOutputDir("d:/tmp")
+                //覆盖
                 .setFileOverride(true);
         new AutoGenerator()
                 .setGlobalConfig(config)

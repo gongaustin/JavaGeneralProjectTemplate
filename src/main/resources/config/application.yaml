@@ -1,0 +1,54 @@
+#共有配置
+
+#server config
+server:
+  port: 2222
+  servlet:
+    context-path: /yuechi
+#log config(过滤Swagger2 Bug引起的报错)
+logging:
+  level:
+    io:
+      swagger:
+        models:
+          parameters:
+            AbstractSerializableParameter: error
+
+#mybatis-plus config
+mybatis-plus:
+  configuration:
+    cache-enabled: false
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      #PK type  0:self ++, 1:user define,2:number uuid, 3:uuid;
+      id-type: assign_uuid
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      table-prefix: tb_
+      table-underline: true
+    mapper-registry-cache: true
+  #mapper路径
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.austin.common.entity
+
+#mysql connection pool
+spring:
+  datasource:
+    #Java1.8后
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #tomcat config
+    tomcat:
+      initial-size: 1
+      max-active: 20
+      max-wait: 6000
+      min-evictable-idle-time-millis: 60000
+
+  #启用哪一个配置
+  profiles:
+    active: test
+
+
+
+#Swagger2访问地址
+#http://#{server.ip}:#{server.port}/#{server.servlet.context-path}/doc.html

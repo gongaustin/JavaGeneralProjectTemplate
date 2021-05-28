@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @author GongJun
  * @since 2020-08-28
  */
+
 /**
  * @description: 高版本的MybatisPlus更规范了，Mapper中必须加上@Mapper注解，避免引起不必要的报错
  * @author: GongJun

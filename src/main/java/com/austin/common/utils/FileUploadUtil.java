@@ -113,8 +113,7 @@ public class FileUploadUtil {
                     System.out.println("++++=====" + name);
                     long size = item.getSize();
                     //有多个文件域时，只上传有文件的
-                    if ((name == null || name.equals("")) && size == 0)
-                        continue;
+                    if ((name == null || name.equals("")) && size == 0) continue;
                     Matcher m = p.matcher(name);
                     boolean result = m.find();
                     if (result) {

@@ -18,13 +18,11 @@ public class DebugOut {
     }
 
     public static void print(String arg0) {
-        if (DEBUG)
-            System.out.print(arg0);
+        if (DEBUG) System.out.print(arg0);
     }
 
     public static void println(String arg0) {
-        if (DEBUG)
-            System.out.println(arg0);
+        if (DEBUG) System.out.println(arg0);
     }
 
 }

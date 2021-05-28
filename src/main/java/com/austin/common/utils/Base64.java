@@ -160,16 +160,7 @@ public class Base64 {
      *
      * @since ostermillerutils 1.00.00
      */
-    protected static final byte[] base64Chars = {
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-            'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-            'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
-            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-            'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-            'w', 'x', 'y', 'z', '0', '1', '2', '3',
-            '4', '5', '6', '7', '8', '9', '+', '/',
-    };
+    protected static final byte[] base64Chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/',};
     /**
      * Reverse lookup table for the Base64 alphabet.
      * reversebase64Chars[byte] gives n for the nth Base64
@@ -250,28 +241,7 @@ public class Base64 {
      */
     public static void main(String[] args) {
         // create the command line options that we are looking for
-        LongOpt[] longopts = {
-                new LongOpt(labels.getString("help.option"), LongOpt.NO_ARGUMENT, null, 1),
-                new LongOpt(labels.getString("version.option"), LongOpt.NO_ARGUMENT, null, 2),
-                new LongOpt(labels.getString("about.option"), LongOpt.NO_ARGUMENT, null, 3),
-                new LongOpt(labels.getString("encode.option"), LongOpt.NO_ARGUMENT, null, 'e'),
-                new LongOpt(labels.getString("lines.option"), LongOpt.NO_ARGUMENT, null, 'l'),
-                new LongOpt(labels.getString("nolines.option"), LongOpt.NO_ARGUMENT, null, 6),
-                new LongOpt(labels.getString("decode.option"), LongOpt.NO_ARGUMENT, null, 'd'),
-                new LongOpt(labels.getString("decodeall.option"), LongOpt.NO_ARGUMENT, null, 'a'),
-                new LongOpt(labels.getString("decodegood.option"), LongOpt.NO_ARGUMENT, null, 5),
-                new LongOpt(labels.getString("guess.option"), LongOpt.NO_ARGUMENT, null, 'g'),
-                new LongOpt(labels.getString("ext.option"), LongOpt.OPTIONAL_ARGUMENT, null, 'x'),
-                new LongOpt(labels.getString("force.option"), LongOpt.NO_ARGUMENT, null, 'f'),
-                new LongOpt(labels.getString("quiet.option"), LongOpt.NO_ARGUMENT, null, 'q'),
-                new LongOpt(labels.getString("reallyquiet.option"), LongOpt.NO_ARGUMENT, null, 'Q'),
-                new LongOpt(labels.getString("verbose.option"), LongOpt.NO_ARGUMENT, null, 'v'),
-                new LongOpt(labels.getString("noforce.option"), LongOpt.NO_ARGUMENT, null, 4),
-                new LongOpt(labels.getString("file.option"), LongOpt.NO_ARGUMENT, null, 7),
-                new LongOpt(labels.getString("string.option"), LongOpt.NO_ARGUMENT, null, 8),
-                new LongOpt(labels.getString("newline.option"), LongOpt.NO_ARGUMENT, null, 'n'),
-                new LongOpt(labels.getString("nonewline.option"), LongOpt.NO_ARGUMENT, null, 9),
-        };
+        LongOpt[] longopts = {new LongOpt(labels.getString("help.option"), LongOpt.NO_ARGUMENT, null, 1), new LongOpt(labels.getString("version.option"), LongOpt.NO_ARGUMENT, null, 2), new LongOpt(labels.getString("about.option"), LongOpt.NO_ARGUMENT, null, 3), new LongOpt(labels.getString("encode.option"), LongOpt.NO_ARGUMENT, null, 'e'), new LongOpt(labels.getString("lines.option"), LongOpt.NO_ARGUMENT, null, 'l'), new LongOpt(labels.getString("nolines.option"), LongOpt.NO_ARGUMENT, null, 6), new LongOpt(labels.getString("decode.option"), LongOpt.NO_ARGUMENT, null, 'd'), new LongOpt(labels.getString("decodeall.option"), LongOpt.NO_ARGUMENT, null, 'a'), new LongOpt(labels.getString("decodegood.option"), LongOpt.NO_ARGUMENT, null, 5), new LongOpt(labels.getString("guess.option"), LongOpt.NO_ARGUMENT, null, 'g'), new LongOpt(labels.getString("ext.option"), LongOpt.OPTIONAL_ARGUMENT, null, 'x'), new LongOpt(labels.getString("force.option"), LongOpt.NO_ARGUMENT, null, 'f'), new LongOpt(labels.getString("quiet.option"), LongOpt.NO_ARGUMENT, null, 'q'), new LongOpt(labels.getString("reallyquiet.option"), LongOpt.NO_ARGUMENT, null, 'Q'), new LongOpt(labels.getString("verbose.option"), LongOpt.NO_ARGUMENT, null, 'v'), new LongOpt(labels.getString("noforce.option"), LongOpt.NO_ARGUMENT, null, 4), new LongOpt(labels.getString("file.option"), LongOpt.NO_ARGUMENT, null, 7), new LongOpt(labels.getString("string.option"), LongOpt.NO_ARGUMENT, null, 8), new LongOpt(labels.getString("newline.option"), LongOpt.NO_ARGUMENT, null, 'n'), new LongOpt(labels.getString("nonewline.option"), LongOpt.NO_ARGUMENT, null, 9),};
         String oneLetterOptions = "eldagx::fqQvVn";
         Getopt opts = new Getopt(labels.getString("base64"), args, oneLetterOptions, longopts);
         int action = ACTION_GUESS;
@@ -288,58 +258,13 @@ public class Base64 {
             switch (c) {
                 case 1: {
                     // print out the help message
-                    String[] helpFlags = new String[]{
-                            "--" + labels.getString("help.option"),
-                            "--" + labels.getString("version.option"),
-                            "--" + labels.getString("about.option"),
-                            "-g --" + labels.getString("guess.option"),
-                            "-e --" + labels.getString("encode.option"),
-                            "-l --" + labels.getString("lines.option"),
-                            "--" + labels.getString("nolines.option"),
-                            "-d --" + labels.getString("decode.option"),
-                            "-a --" + labels.getString("decodeall.option"),
-                            "--" + labels.getString("decodegood.option"),
-                            "-x --" + labels.getString("ext.option") + " <" + labels.getString("ext.option") + ">",
-                            "-f --" + labels.getString("force.option"),
-                            "--" + labels.getString("noforce.option"),
-                            "-v --" + labels.getString("verbose.option"),
-                            "-q --" + labels.getString("quiet.option"),
-                            "-Q --" + labels.getString("reallyquiet.option"),
-                            "--" + labels.getString("file.option"),
-                            "--" + labels.getString("string.option"),
-                            "-n --" + labels.getString("newline.option"),
-                            "--" + labels.getString("nonewline.option"),
-                    };
+                    String[] helpFlags = new String[]{"--" + labels.getString("help.option"), "--" + labels.getString("version.option"), "--" + labels.getString("about.option"), "-g --" + labels.getString("guess.option"), "-e --" + labels.getString("encode.option"), "-l --" + labels.getString("lines.option"), "--" + labels.getString("nolines.option"), "-d --" + labels.getString("decode.option"), "-a --" + labels.getString("decodeall.option"), "--" + labels.getString("decodegood.option"), "-x --" + labels.getString("ext.option") + " <" + labels.getString("ext.option") + ">", "-f --" + labels.getString("force.option"), "--" + labels.getString("noforce.option"), "-v --" + labels.getString("verbose.option"), "-q --" + labels.getString("quiet.option"), "-Q --" + labels.getString("reallyquiet.option"), "--" + labels.getString("file.option"), "--" + labels.getString("string.option"), "-n --" + labels.getString("newline.option"), "--" + labels.getString("nonewline.option"),};
                     int maxLength = 0;
                     for (int i = 0; i < helpFlags.length; i++) {
                         maxLength = Math.max(maxLength, helpFlags[i].length());
                     }
                     maxLength += 2;
-                    System.out.println(
-                            labels.getString("base64") + " [-" + StringHelper.replace(oneLetterOptions, ":", "") + "] <" + labels.getString("files") + ">\n" +
-                                    labels.getString("purpose.message") + "\n" +
-                                    "  " + labels.getString("stdin.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[0], maxLength, ' ') + labels.getString("help.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[1], maxLength, ' ') + labels.getString("version.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[2], maxLength, ' ') + labels.getString("about.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[3], maxLength, ' ') + labels.getString("g.message") + " (" + labels.getString("default") + ")\n" +
-                                    "  " + StringHelper.postpad(helpFlags[4], maxLength, ' ') + labels.getString("e.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[5], maxLength, ' ') + labels.getString("l.message") + " (" + labels.getString("default") + ")\n" +
-                                    "  " + StringHelper.postpad(helpFlags[6], maxLength, ' ') + labels.getString("nolines.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[7], maxLength, ' ') + labels.getString("d.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[8], maxLength, ' ') + labels.getString("a.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[9], maxLength, ' ') + labels.getString("decodegood.message") + " (" + labels.getString("default") + ")\n" +
-                                    "  " + StringHelper.postpad(helpFlags[10], maxLength, ' ') + labels.getString("x.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[11], maxLength, ' ') + labels.getString("f.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[12], maxLength, ' ') + labels.getString("noforce.message") + " (" + labels.getString("default") + ")\n" +
-                                    "  " + StringHelper.postpad(helpFlags[13], maxLength, ' ') + labels.getString("v.message") + " (" + labels.getString("default") + ")\n" +
-                                    "  " + StringHelper.postpad(helpFlags[14], maxLength, ' ') + labels.getString("q.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[15], maxLength, ' ') + labels.getString("Q.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[16], maxLength, ' ') + labels.getString("file.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[17], maxLength, ' ') + labels.getString("string.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[18], maxLength, ' ') + labels.getString("newline.message") + "\n" +
-                                    "  " + StringHelper.postpad(helpFlags[19], maxLength, ' ') + labels.getString("nonewline.message") + "\n"
-                    );
+                    System.out.println(labels.getString("base64") + " [-" + StringHelper.replace(oneLetterOptions, ":", "") + "] <" + labels.getString("files") + ">\n" + labels.getString("purpose.message") + "\n" + "  " + labels.getString("stdin.message") + "\n" + "  " + StringHelper.postpad(helpFlags[0], maxLength, ' ') + labels.getString("help.message") + "\n" + "  " + StringHelper.postpad(helpFlags[1], maxLength, ' ') + labels.getString("version.message") + "\n" + "  " + StringHelper.postpad(helpFlags[2], maxLength, ' ') + labels.getString("about.message") + "\n" + "  " + StringHelper.postpad(helpFlags[3], maxLength, ' ') + labels.getString("g.message") + " (" + labels.getString("default") + ")\n" + "  " + StringHelper.postpad(helpFlags[4], maxLength, ' ') + labels.getString("e.message") + "\n" + "  " + StringHelper.postpad(helpFlags[5], maxLength, ' ') + labels.getString("l.message") + " (" + labels.getString("default") + ")\n" + "  " + StringHelper.postpad(helpFlags[6], maxLength, ' ') + labels.getString("nolines.message") + "\n" + "  " + StringHelper.postpad(helpFlags[7], maxLength, ' ') + labels.getString("d.message") + "\n" + "  " + StringHelper.postpad(helpFlags[8], maxLength, ' ') + labels.getString("a.message") + "\n" + "  " + StringHelper.postpad(helpFlags[9], maxLength, ' ') + labels.getString("decodegood.message") + " (" + labels.getString("default") + ")\n" + "  " + StringHelper.postpad(helpFlags[10], maxLength, ' ') + labels.getString("x.message") + "\n" + "  " + StringHelper.postpad(helpFlags[11], maxLength, ' ') + labels.getString("f.message") + "\n" + "  " + StringHelper.postpad(helpFlags[12], maxLength, ' ') + labels.getString("noforce.message") + " (" + labels.getString("default") + ")\n" + "  " + StringHelper.postpad(helpFlags[13], maxLength, ' ') + labels.getString("v.message") + " (" + labels.getString("default") + ")\n" + "  " + StringHelper.postpad(helpFlags[14], maxLength, ' ') + labels.getString("q.message") + "\n" + "  " + StringHelper.postpad(helpFlags[15], maxLength, ' ') + labels.getString("Q.message") + "\n" + "  " + StringHelper.postpad(helpFlags[16], maxLength, ' ') + labels.getString("file.message") + "\n" + "  " + StringHelper.postpad(helpFlags[17], maxLength, ' ') + labels.getString("string.message") + "\n" + "  " + StringHelper.postpad(helpFlags[18], maxLength, ' ') + labels.getString("newline.message") + "\n" + "  " + StringHelper.postpad(helpFlags[19], maxLength, ' ') + labels.getString("nonewline.message") + "\n");
                     System.exit(0);
                 }
                 break;
@@ -350,11 +275,7 @@ public class Base64 {
                 }
                 break;
                 case 3: {
-                    System.out.println(
-                            labels.getString("base64") + " -- " + labels.getString("purpose.message") + "\n" +
-                                    MessageFormat.format(labels.getString("copyright"), (Object[]) new String[]{"2001-2002", "Stephen Ostermiller (http://ostermiller.org/contact.pl?regarding=Java+Utilities)"}) + "\n\n" +
-                                    labels.getString("license")
-                    );
+                    System.out.println(labels.getString("base64") + " -- " + labels.getString("purpose.message") + "\n" + MessageFormat.format(labels.getString("copyright"), (Object[]) new String[]{"2001-2002", "Stephen Ostermiller (http://ostermiller.org/contact.pl?regarding=Java+Utilities)"}) + "\n\n" + labels.getString("license"));
                     System.exit(0);
                 }
                 break;
@@ -550,17 +471,9 @@ public class Base64 {
                     }
                     exitCond = 1;
                 } else if (action == ACTION_ENCODE) {
-                    encode(
-                            new BufferedInputStream(System.in),
-                            new BufferedOutputStream(System.out),
-                            lineBreaks
-                    );
+                    encode(new BufferedInputStream(System.in), new BufferedOutputStream(System.out), lineBreaks);
                 } else {
-                    decode(
-                            new BufferedInputStream(System.in),
-                            new BufferedOutputStream(System.out),
-                            !forceDecode
-                    );
+                    decode(new BufferedInputStream(System.in), new BufferedOutputStream(System.out), !forceDecode);
                     if (decodeEndLine) System.out.println();
                 }
             } catch (Base64DecodingException x) {
@@ -1212,15 +1125,7 @@ public class Base64 {
             if (read == END_OF_INPUT) return END_OF_INPUT;
             read = reverseBase64Chars[(byte) read];
             if (throwExceptions && (read == NON_BASE_64 || (numPadding > 0 && read > NON_BASE_64))) {
-                throw new Base64DecodingException(
-                        MessageFormat.format(
-                                labels.getString("unexpectedchar"),
-                                (Object[]) new String[]{
-                                        "'" + (char) read + "' (0x" + Integer.toHexString(read) + ")"
-                                }
-                        ),
-                        (char) read
-                );
+                throw new Base64DecodingException(MessageFormat.format(labels.getString("unexpectedchar"), (Object[]) new String[]{"'" + (char) read + "' (0x" + Integer.toHexString(read) + ")"}), (char) read);
             }
             if (read == NON_BASE_64_PADDING) {
                 numPadding++;
@@ -1313,8 +1218,7 @@ public class Base64 {
         // read bytes unmapping them from their ASCII encoding in the process
         // we must read at least two bytes to be able to output anything
         boolean done = false;
-        while (!done && (inBuffer[0] = readBase64(in, throwExceptions)) != END_OF_INPUT
-                && (inBuffer[1] = readBase64(in, throwExceptions)) != END_OF_INPUT) {
+        while (!done && (inBuffer[0] = readBase64(in, throwExceptions)) != END_OF_INPUT && (inBuffer[1] = readBase64(in, throwExceptions)) != END_OF_INPUT) {
             // Fill the buffer
             inBuffer[2] = readBase64(in, throwExceptions);
             inBuffer[3] = readBase64(in, throwExceptions);

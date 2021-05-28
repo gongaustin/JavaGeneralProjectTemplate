@@ -47,8 +47,7 @@ public class Counter {
             strSQL = "select serialno from tblserial where tablename='" + strTable + "'";
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(strSQL);
-            if (rs.next())
-                serialno = rs.getLong(1);
+            if (rs.next()) serialno = rs.getLong(1);
             strSQL = "update tblserial set serialno = serialno + 1 where tablename='" + strTable + "'";
             stmt.execute(strSQL);
             rs.close();
@@ -57,12 +56,11 @@ public class Counter {
         } catch (Exception ex) {
 
         } finally {
-            if (stmt != null)
-                try {
-                    stmt.close();
-                    stmt = null;
-                } catch (Exception ex) {
-                }
+            if (stmt != null) try {
+                stmt.close();
+                stmt = null;
+            } catch (Exception ex) {
+            }
         }
         return serialno;
     }
