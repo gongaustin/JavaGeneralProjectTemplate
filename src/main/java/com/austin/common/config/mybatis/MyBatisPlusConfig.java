@@ -1,5 +1,6 @@
 package com.austin.common.config.mybatis;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ public class MyBatisPlusConfig {
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor page = new PaginationInterceptor();
         // 设置数据库类型
-        page.setDialectType("mysql");
+        page.setDbType(DbType.MYSQL);
         return page;
     }
 }
