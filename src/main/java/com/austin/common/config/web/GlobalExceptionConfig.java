@@ -1,6 +1,5 @@
 package com.austin.common.config.web;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
