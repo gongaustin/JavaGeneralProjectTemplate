@@ -2,4 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.austin.common.mapper.UserMapper">
 
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.austin.common.entity.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="realname" property="realname" />
+        <result column="avatar_attchment_id" property="avatarAttchmentId" />
+        <result column="cellphone" property="cellphone" />
+        <result column="email" property="email" />
+        <result column="sex" property="sex" />
+        <result column="ctime" property="ctime" />
+        <result column="introduction" property="introduction" />
+        <result column="dept_id" property="deptId" />
+        <result column="position" property="position" />
+        <result column="office_phone" property="officePhone" />
+        <result column="is_delete" property="isDelete" />
+        <result column="backup" property="backup" />
+    </resultMap>
+
+    <resultMap id="BaseVoResultMap" extends="BaseResultMap" type="com.austin.common.entity.vo.UserVo">
+
+    </resultMap>
+
+    <!-- 通用查询过滤条件 -->
+    <sql id="queryConditions">
+        <!--
+        ${ew.customSqlSegment}和${ew.sqlSegment}区别
+        ${ew.customSqlSegment}不用加<where>
+        ${ew.sqlSegment}要加<where>
+        看场景酌情使用
+        -->
+        ${ew.customSqlSegment}
+    </sql>
+
+    <select id="selectVoPage" resultMap="BaseVoResultMap">
+        select a.* from(
+          select * form upms_user
+        ) a
+        <include refid="queryConditions"></include>
+    </select>
+
 </mapper>
