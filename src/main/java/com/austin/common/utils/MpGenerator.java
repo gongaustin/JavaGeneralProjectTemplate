@@ -47,12 +47,10 @@ public class MpGenerator {
     }
 
     private void generateByTables(String packageName, String[] prefix, String... tableNames) {
-        //全局配置
-        GlobalConfig config = new GlobalConfig();
+
         String dbUrl = url;
         //数据源配置
-        DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig
+        DataSourceConfig dataSourceConfig = new DataSourceConfig()
                 //数据源类型
                 .setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
@@ -60,27 +58,28 @@ public class MpGenerator {
                 .setPassword(password)
                 .setDriverName(driver_class_name);
         //StrategyConfig
-        StrategyConfig strategyConfig = new StrategyConfig();
-        strategyConfig
+        StrategyConfig strategyConfig = new StrategyConfig()
                 .setCapitalMode(true)
                 //[true]自动生成lombok注解,去除get和set方法,自动为实体添加数据库字段的注释
                 .setEntityLombokModel(false)
                 //生成TableField注解
                 .setEntityTableFieldAnnotationEnable(true)
                 .setTablePrefix(prefix)
-                .setNaming(NamingStrategy.underline_to_camel)  //转驼峰
+                .setNaming(NamingStrategy.underline_to_camel)  //设置命名规则下划线转驼峰
+                .setColumnNaming(NamingStrategy.underline_to_camel)//列名规则
                 .setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
         //设置全局配置参数
-        config
+        //全局配置
+        GlobalConfig config = new GlobalConfig()
                 //通用查询映射
                 .setBaseResultMap(true)
-                //用用结果查询列
+                //用用结果查询列,基本的sql片段
                 .setBaseColumnList(false)
                 //ID类型设置
                 .setIdType(IdType.ASSIGN_UUID)
                 //Swagger
                 .setSwagger2(true)
-
+                //AR模式
                 .setActiveRecord(false)
                 //缓存
                 .setEnableCache(false)
