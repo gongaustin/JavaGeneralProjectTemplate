@@ -36,7 +36,7 @@ public class MpGenerator {
                 "busi_doctor",
                 "busi_attachment",
                 "busi_module"
-        };
+        }; 
 
         new MpGenerator().generateCode(package_name, table_prefix, table_names);
     }
